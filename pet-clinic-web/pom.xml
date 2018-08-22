@@ -3,20 +3,20 @@
     <parent>
         <artifactId>sfg-pet-clinic</artifactId>
         <groupId>me.cheznic.learning</groupId>
-        <version>0.0.3-SNAPSHOT</version>
+        <version>0.0.3</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>pet-clinic-web</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.3</version>
 
     <dependencies>
         
         <dependency>
             <artifactId>pet-clinic-data</artifactId>
             <groupId>me.cheznic.learning</groupId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.3</version>
         </dependency>
 
         <dependency>
