@@ -2,12 +2,14 @@ package me.cheznic.learning.sfgpetclinic.services.map;
 
 import me.cheznic.learning.sfgpetclinic.model.Pet;
 import me.cheznic.learning.sfgpetclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 /**
  * Created by Charles Nicoletti on 8/22/18
  */
+@Service
 public class PetMapService extends AbstractMapService<Pet> implements PetService {
 
     @Override
