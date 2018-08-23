@@ -1,19 +1,21 @@
 package me.cheznic.learning.sfgpetclinic.services;
 
+import me.cheznic.learning.sfgpetclinic.model.BaseEntity;
+
 import java.util.Set;
 
 /**
  * Created by Charles Nicoletti on 8/22/18
  */
-public interface CrudService<T, ID> {
+public interface CrudService<T extends BaseEntity> {
 
-    Set<T> findAll();
+    public Set<T> findAll();
 
-    T findById(ID id);
+    public T findById(Long id);
 
-    T save(T object);
+    public T save(T object);
 
-    void delete(T object);
+    public void delete(T object);
 
-    void deleteById(ID id);
+    public void deleteById(Long id);
 }
