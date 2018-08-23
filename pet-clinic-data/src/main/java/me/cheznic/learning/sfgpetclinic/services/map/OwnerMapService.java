@@ -11,8 +11,8 @@ import java.util.Set;
 public class OwnerMapService extends AbstractMapService<Owner> implements OwnerService {
 
     @Override
-    public Owner findByLastName(String lastName) {
-        return super.findAll().stream().filter(x -> lastName.equals(x.getLastName())).findAny().orElse(null);
+    public Owner findByLastName(final String lastName) {
+        return super.findAll().stream().filter(x -> x.getLastName().equals(lastName)).findAny().orElse(null);
     }
 
     @Override
