@@ -2,10 +2,7 @@ package me.cheznic.learning.sfgpetclinic.services.map;
 
 import me.cheznic.learning.sfgpetclinic.model.BaseEntity;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Charles Nicoletti on 8/22/18
@@ -23,6 +20,16 @@ public abstract class AbstractMapService<T extends BaseEntity> {
     }
 
     T save(T object) {
+
+        if (object != null) {
+            if (object.getId() == null)
+                object.setId(getNextId());
+
+            map.put(object.getId(), object);
+        } else {
+            throw new RuntimeException("Object cannot be null");
+        }
+
         return map.put(object.getId(), object);
     }
 
@@ -32,5 +39,16 @@ public abstract class AbstractMapService<T extends BaseEntity> {
 
     void delete(T object) {
         map.remove(object.getId());
+    }
+
+    private Long getNextId() {
+        Long nextId = null;
+        try {
+            nextId = Collections.max(map.keySet()) + 1;
+        } catch (NoSuchElementException nsee) {
+            nextId = 1L;
+        }
+
+        return nextId;
     }
 }
