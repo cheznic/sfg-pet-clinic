@@ -7,4 +7,4 @@ Technologies used include the following:
 - MySQL
 - Thymeleaf template engine
 - Maven to build the multi module project
-- WRO4J to integrated Less
+- WRO4J to integrate Less
