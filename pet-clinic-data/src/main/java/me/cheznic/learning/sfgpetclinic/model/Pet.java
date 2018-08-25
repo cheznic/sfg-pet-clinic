@@ -7,10 +7,10 @@ import java.time.LocalDate;
  */
 public class Pet extends BaseEntity {
 
+    private String name;
     private LocalDate birthDate;
     private PetType petType;
     private Owner owner;
-    private String name;
 
     public String getName() {
         return name;

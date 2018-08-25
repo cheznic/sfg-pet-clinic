@@ -1,13 +1,17 @@
 package me.cheznic.learning.sfgpetclinic.bootstrap;
 
 import me.cheznic.learning.sfgpetclinic.model.Owner;
+import me.cheznic.learning.sfgpetclinic.model.Pet;
 import me.cheznic.learning.sfgpetclinic.model.PetType;
 import me.cheznic.learning.sfgpetclinic.model.Vet;
 import me.cheznic.learning.sfgpetclinic.services.OwnerService;
+import me.cheznic.learning.sfgpetclinic.services.PetService;
 import me.cheznic.learning.sfgpetclinic.services.PetTypeService;
 import me.cheznic.learning.sfgpetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 /**
  * Created by Charles Nicoletti on 8/23/18
@@ -18,11 +22,13 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final PetService petService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, PetService petService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.petService = petService;
     }
 
     @Override
@@ -30,38 +36,68 @@ public class DataLoader implements CommandLineRunner {
 
         // ==================
         // Load pet type data
-        PetType dog  = new PetType();
-        dog.setName("Dog");
+        PetType dogType  = new PetType();
+        dogType.setName("Dog");
+        dogType = petTypeService.save(dogType);
 
-        petTypeService.save(dog);
+        PetType catType  = new PetType();
+        catType.setName("Cat");
+        catType = petTypeService.save(catType);
 
-        PetType cat  = new PetType();
-        cat.setName("Cat");
-
-        petTypeService.save(cat);
-
-        PetType bird  = new PetType();
-        bird.setName("Bird");
-
-        petTypeService.save(bird);
+        PetType birdType  = new PetType();
+        birdType.setName("Bird");
+        birdType = petTypeService.save(birdType);
 
         System.out.println("Loaded pet types.");
 
         // ==================
-        // Load owner data
-        Owner o1 = new Owner();
-        o1.setFirstName("Michael");
-        o1.setLastName("Weston");
+        // Load owner and pet data
 
-        ownerService.save(o1);
+        Owner mike = new Owner();
+        mike.setFirstName("Michael");
+        mike.setLastName("Weston");
+        mike.setAddress("123 Main St.");
+        mike.setCity("New York");
+        mike.setTelephone("555-234-5677");
 
-        Owner o2 = new Owner();
-        o2.setFirstName("Fiona");
-        o2.setLastName("Glenanne");
+        ownerService.save(mike);
 
-        ownerService.save(o2);
+        Pet chowder = new Pet();
+        chowder.setPetType(dogType);
+        chowder.setName("Chowder");
+        chowder.setBirthDate(LocalDate.of(2011, 3, 22));
+        chowder.setOwner(mike);
 
-        System.out.println("Loaded owners.");
+        petService.save(chowder);
+
+        mike.getPets().add(chowder);
+
+        ownerService.save(mike);
+
+
+        Owner fiona = new Owner();
+        fiona.setFirstName("Fiona");
+        fiona.setLastName("Glenanne");
+        fiona.setAddress("555 6th Ave.");
+        fiona.setCity("Bremmerton");
+        fiona.setTelephone("555-877-5237");
+
+        ownerService.save(fiona);
+
+        Pet snowBall = new Pet();
+        snowBall.setPetType(catType);
+        snowBall.setName("Snow Ball");
+        snowBall.setBirthDate(LocalDate.of(2012, 4, 7));
+        snowBall.setOwner(fiona);
+
+        petService.save(snowBall);
+
+        fiona.getPets().add(snowBall);
+
+        ownerService.save(fiona);
+
+
+        System.out.println("Loaded owners and owner's pets.");
 
         // ==================
         // Load vet data

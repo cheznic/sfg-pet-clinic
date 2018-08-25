@@ -2,6 +2,8 @@ package me.cheznic.learning.sfgpetclinic.services.map;
 
 import me.cheznic.learning.sfgpetclinic.model.Owner;
 import me.cheznic.learning.sfgpetclinic.services.OwnerService;
+import me.cheznic.learning.sfgpetclinic.services.PetService;
+import me.cheznic.learning.sfgpetclinic.services.PetTypeService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -11,6 +13,14 @@ import java.util.Set;
  */
 @Service
 public class OwnerMapService extends AbstractMapService<Owner> implements OwnerService {
+
+    private final PetService petService;
+    private final PetTypeService petTypeService;
+
+    public OwnerMapService(PetService petService, PetTypeService petTypeService) {
+        this.petService = petService;
+        this.petTypeService = petTypeService;
+    }
 
     @Override
     public Owner findByLastName(final String lastName) {
@@ -29,6 +39,29 @@ public class OwnerMapService extends AbstractMapService<Owner> implements OwnerS
 
     @Override
     public Owner save(Owner owner) {
+
+        if (owner == null)
+            return null;
+
+        if (owner.getPets() != null) {
+
+            owner.getPets().forEach(pet -> {
+
+                if (pet.getPetType() != null) {
+
+                    if (pet.getPetType().getId() == null) {
+                        pet.setPetType(petTypeService.save(pet.getPetType()));
+                    }
+
+                } else {
+                    throw new RuntimeException("Object of type Pet must have value for PetType");
+                }
+
+                if (pet.getId() == null)
+                    pet.setId(petService.save(pet).getId());
+            });
+        }
+
         return super.save(owner);
     }
 
