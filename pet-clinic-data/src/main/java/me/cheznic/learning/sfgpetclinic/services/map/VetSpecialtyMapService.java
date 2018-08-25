@@ -2,12 +2,14 @@ package me.cheznic.learning.sfgpetclinic.services.map;
 
 import me.cheznic.learning.sfgpetclinic.model.VetSpeciality;
 import me.cheznic.learning.sfgpetclinic.services.VetSpecialtyService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 /**
  * Created by Charles Nicoletti on 8/24/18
  */
+@Service
 public class VetSpecialtyMapService extends AbstractMapService<VetSpeciality> implements VetSpecialtyService {
     @Override
     public Set<VetSpeciality> findAll() {
