@@ -3,6 +3,7 @@ package me.cheznic.learning.sfgpetclinic.services.map;
 import me.cheznic.learning.sfgpetclinic.model.Vet;
 import me.cheznic.learning.sfgpetclinic.services.SpecialtyService;
 import me.cheznic.learning.sfgpetclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -11,6 +12,7 @@ import java.util.Set;
  * Created by Charles Nicoletti on 8/22/18
  */
 @Service
+@Profile({"default", "map"})
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
 
     private final SpecialtyService vetSpecialtyService;

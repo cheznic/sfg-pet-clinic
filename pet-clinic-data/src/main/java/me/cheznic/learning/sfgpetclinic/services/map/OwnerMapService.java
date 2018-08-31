@@ -4,6 +4,7 @@ import me.cheznic.learning.sfgpetclinic.model.Owner;
 import me.cheznic.learning.sfgpetclinic.services.OwnerService;
 import me.cheznic.learning.sfgpetclinic.services.PetService;
 import me.cheznic.learning.sfgpetclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -12,6 +13,7 @@ import java.util.Set;
  * Created by Charles Nicoletti on 8/22/18
  */
 @Service
+@Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetService petService;
