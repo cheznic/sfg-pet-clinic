@@ -12,7 +12,7 @@ import java.util.Set;
  * Created by Charles Nicoletti on 8/22/18
  */
 @Service
-public class OwnerMapService extends AbstractMapService<Owner> implements OwnerService {
+public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetService petService;
     private final PetTypeService petTypeService;

@@ -11,7 +11,7 @@ import java.util.Set;
 @Table(name = "owners")
 public class Owner extends Person {
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "owner")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
     @Column(name = "address")
