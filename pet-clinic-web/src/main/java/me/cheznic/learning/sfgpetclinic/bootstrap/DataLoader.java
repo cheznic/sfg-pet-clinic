@@ -57,15 +57,15 @@ public class DataLoader implements CommandLineRunner {
         // ==================
         // Load vet specialty data
 
-        VetSpeciality radiology = new VetSpeciality();
+        Speciality radiology = new Speciality();
         radiology.setDescription("Radiology");
         radiology = vetSpecialtyService.save(radiology);
 
-        VetSpeciality surgery = new VetSpeciality();
+        Speciality surgery = new Speciality();
         surgery.setDescription("Surgery");
         surgery = vetSpecialtyService.save(surgery);
 
-        VetSpeciality dentistry = new VetSpeciality();
+        Speciality dentistry = new Speciality();
         dentistry.setDescription("Dentistry");
         dentistry = vetSpecialtyService.save(dentistry);
 

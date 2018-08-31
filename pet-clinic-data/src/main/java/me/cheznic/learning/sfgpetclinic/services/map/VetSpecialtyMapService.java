@@ -1,6 +1,6 @@
 package me.cheznic.learning.sfgpetclinic.services.map;
 
-import me.cheznic.learning.sfgpetclinic.model.VetSpeciality;
+import me.cheznic.learning.sfgpetclinic.model.Speciality;
 import me.cheznic.learning.sfgpetclinic.services.VetSpecialtyService;
 import org.springframework.stereotype.Service;
 
@@ -10,14 +10,14 @@ import java.util.Set;
  * Created by Charles Nicoletti on 8/24/18
  */
 @Service
-public class VetSpecialtyMapService extends AbstractMapService<VetSpeciality> implements VetSpecialtyService {
+public class VetSpecialtyMapService extends AbstractMapService<Speciality> implements VetSpecialtyService {
     @Override
-    public Set<VetSpeciality> findAll() {
+    public Set<Speciality> findAll() {
         return super.findAll();
     }
 
     @Override
-    public VetSpeciality findById(Long id) {
+    public Speciality findById(Long id) {
         return super.findById(id);
     }
 
@@ -27,12 +27,12 @@ public class VetSpecialtyMapService extends AbstractMapService<VetSpeciality> im
     }
 
     @Override
-    public void delete(VetSpeciality vetSpeciality) {
+    public void delete(Speciality vetSpeciality) {
         super.delete(vetSpeciality);
     }
 
     @Override
-    public VetSpeciality save(VetSpeciality vetSpeciality) {
+    public Speciality save(Speciality vetSpeciality) {
         return super.save(vetSpeciality);
     }
 }
